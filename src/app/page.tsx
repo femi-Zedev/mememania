@@ -1,103 +1,33 @@
-"use client"; // This is a client component 👈🏽
-import FilePicker from '@/components/file-picker/FilePicker'
-import Image from 'next/image'
-import { useState } from 'react';
-import { v4 } from "uuid";
-import { Button, Progress } from '@mantine/core';
-import { storage } from '@/firebase/config';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useRecoilState } from 'recoil';
-import { FilesPicked, UploadPercentages } from '@/recoil/atoms';
+"use client";
+import { Button } from "@mantine/core";
 
-export default function Home() {
-  const [urls, setUrls] = useState<string[]>([]);
-  const [FilesToUpload, setFilesToUpload] = useRecoilState<File[]>(FilesPicked);
-  const [isLoading, setIsLoading] = useState(false)
-  const [Percentages, setPercentages] = useRecoilState<number[]>(UploadPercentages);
+// This is a client component 👈🏽
 
-  // submit files
-  const handleFileSubmit = async () => {
-    if (FilesToUpload.length == 0 || FilesToUpload == null) return
-    // const percents: number[] = []
-    setPercentages(Array(FilesToUpload.length).fill(0));
-    setIsLoading(true)
-    const promiseArray = FilesToUpload.map((file, i) => {
-      
-      return new Promise((resolve, reject) => {
-        const fileRef = ref(storage, `files/${file.name + v4()}`);
-        const uploadTask = uploadBytesResumable(fileRef, file);
-
-        uploadTask.on("state_changed",
-          (snapshot) => {
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            
-            setPercentages(prevPercentages => {
-              const updatedPercentages = [...prevPercentages];
-              updatedPercentages[i] = progress;
-              return updatedPercentages;
-            });
-          },
-          (error) => {
-            setIsLoading(false)
-            alert(error);
-            reject(error); // Reject the promise in case of an error
-          },
-          () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              setUrls([...urls, downloadURL]);
-              resolve(downloadURL); // Resolve the promise with the downloadURL
-            });
-          });
-      });
-    });
-
-
-    Promise.allSettled(promiseArray).then(() => {
-      setIsLoading(false)
-      // faire du traitement quand tout les upload sont terminés
-    });
 
 
 
-  }
-
-  function handleFilesSelect(files: File[]) {
-    setFilesToUpload([...FilesToUpload, ...files]) 
-  }
+export default function Home() {
 
   return (
-    <main className="h-full min-h-screen p-5">
-      <div className="flex flex-col items-center justify-between">
-        <div className="">
-          <Image
-            className="relative"
-            src="/nextjs.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
+   
+
+      <div className="flex xs:flex-col xl:px-[6%] lg:flex-row items-center justify-between gap-8 h-full w-full mt-[8%]">
+        <div className="xl:w-[40%] home-page">
+          <h1 className="text-heading xs:font-extrabold lg:font-bold">
+            Find the <span className="text-highlight ">perfect meme</span> for every <span className="text-highlight ">situation</span> !
+          </h1>
+
+          <p className="text-regular20 mt-5 text-gray-400">
+            MemeMania let you download high quality memes suited
+            for all king of purposes. You can find the perfect meme for
+            your video and even contribute to enrich this library.
+          </p>
+          <Button className="mt-4 !rounded-xl" size="lg" variant='filled'>Get Started - It's Free</Button>
         </div>
+        {/* <img className="h-[320px] object-cover" alt="" src="/videoMain.png" /> */}
+        <video src="/women_catMeme.mp4" autoPlay loop muted className="w-full rounded-2xl h-[380px] max-w-[500px] object-cover" />
       </div>
 
-      <div className={`mx-auto md:mt-10 my-4 p-5 md:p-8 md:w-3/5 bg-zinc-900 rounded-2xl text-gray-300`}>
-        <h2 className="text-[26px] mb-10 font-semibold">Exemple d&apos;upload de document</h2>
-        <FilePicker onChange={(files: File[]) => handleFilesSelect(files)}
-          className="md:mt-10"
-          isMultiple={true}
-          accepts={["image/png", "image/jpeg"]}
-          formatList="PNG, JPG, WebP, SVG, PDF"
-          percentages={Percentages}
-        />
-      </div>
 
-      {FilesToUpload.length > 0 &&
-        <div className="mt-5 w-full flex">
-          <Button loading={isLoading} loaderPosition="center" className='mx-auto' size='lg' radius="sm" onClick={handleFileSubmit}>
-            Uploader les fichiers
-          </Button>
-        </div>}
-
-    </main>
   )
 }
