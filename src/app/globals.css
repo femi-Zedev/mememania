@@ -49,14 +49,12 @@ button, input {
   @apply lg:text-sm;
 }
 
-
-
 .text-highlight {
   @apply text-primary-400;
 }
 
 body::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
   overflow-x: hidden;
   margin-right: 10px;
 }

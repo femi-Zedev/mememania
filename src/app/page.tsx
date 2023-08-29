@@ -1,9 +1,5 @@
-"use client";
+"use client"; // This is a client component 👈🏽
 import { Button } from "@mantine/core";
-
-// This is a client component 👈🏽
-
-
 
 
 export default function Home() {
@@ -11,7 +7,7 @@ export default function Home() {
   return (
    
 
-      <div className="flex xs:flex-col xl:px-[6%] lg:flex-row items-center justify-between gap-8 h-full w-full mt-[8%]">
+      <div className="flex xs:flex-col xl:px-[6%] lg:flex-row items-center justify-between gap-8 h-full w-full ">
         <div className="xl:w-[40%] home-page">
           <h1 className="text-heading xs:font-extrabold lg:font-bold">
             Find the <span className="text-highlight ">perfect meme</span> for every <span className="text-highlight ">situation</span> !

@@ -1,0 +1,21 @@
+.menuItem {
+  -webkit-tap-highlight-color: transparent;
+  border: 0px;
+  background-color: transparent;
+  outline: 0px;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  box-sizing: border-box;
+  padding: 0.625rem 0.75rem;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.menuItem:hover {
+  background: #0000000f
+}

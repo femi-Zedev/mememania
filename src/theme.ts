@@ -60,18 +60,39 @@ export const theme: MantineThemeOverride = {
 
         input: {
           borderWidth: "1px",
-          borderRadius: "8px",
           height: "43px",
           fontSize: '16px',
           borderColor: theme.colors.gray[3],
           '&:focus-within': {
             borderWidth: "2px",
-            borderColor: theme.colors.brand[4],
+            borderColor: theme.colors.brand[6],
           },
         },
 
         icon: {
           marginLeft: "6px",
+        }
+      })
+    },
+    PasswordInput: {
+      styles: (theme, params: TextInputStylesNames) => ({
+
+        wrapper: {
+          height: "43px",
+        },
+        label: {
+          fontSize: '20px',
+          fontWeight: 600,
+          color: "#525252"
+        },
+
+        innerInput: {
+          height: "100% !important",
+          fontSize: '16px',
+        },
+
+        rightSection: {
+          marginRight: "6px",
         }
       })
     },
