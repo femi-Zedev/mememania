@@ -1,4 +1,5 @@
-import { ButtonProps, MantineThemeOverride, TextInputStylesNames, useMantineTheme } from "@mantine/core";
+import { ButtonProps, MantineThemeOverride, TableStylesParams, TabsStylesParams, TextInputStylesNames, useMantineTheme } from "@mantine/core";
+import { TabsListStylesNames } from "@mantine/core/lib/Tabs/TabsList/TabsList";
 import { Variants } from "framer-motion";
 
 // @ts-ignore
@@ -96,5 +97,27 @@ export const theme: MantineThemeOverride = {
         }
       })
     },
+    Tabs: {
+      styles: (theme ) => ({
+
+        tabsList: {
+          borderBottom: "none",
+        },
+        tab: {
+          paddingInline: "4px",
+          marginInline: "6px",
+          color: theme.colors.gray[5],
+          '&[data-active]': {
+            color: theme.colors.gray[8],
+          }
+        },
+        tabLabel: {
+          fontSize: "16px",
+          fontWeight: 600,
+          
+        }
+       
+      })
+    }
   }
 };

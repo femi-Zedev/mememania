@@ -31,7 +31,6 @@ export default function signin() {
     const user = {
       email: form.values.email,
     };
-    localStorage.setItem('mmUser', JSON.stringify(currentUser))
     setCurrentUser(user)
     setTimeout(() => {
       setIsLoading(false)
@@ -44,10 +43,10 @@ export default function signin() {
       <div className="xs:w-[98%] md:w-[60%] lg:w-[30%] p-10 flex flex-col gap-5 rounded-lg bg-white shadow-2xl border border-gray-100 shadow-slate-200">
         <div className="">
           <h2 className='font-bold text-[32px] text-gray-800'>Log in</h2>
-          <span className='ml-1 flex gap-2 text-regular14 font-semibold text-gray-600'>
+          <div className='ml-1 md:flex gap-2 text-regular14 font-semibold text-gray-600'>
             <p>New to MemeMania ?</p>
             <Link href="/signup" className='text-primary-600'>Create an account</Link>
-          </span>
+          </div>
         </div>
 
         <Button variant='outline' size='lg' radius="6px" className='!border-gray-300 !text-gray-400 !font-normal hover:!text-white' leftIcon={<CustomIcon icon='google' />} > Login with Google</Button>
