@@ -6,7 +6,7 @@ import { IconEyeClosed, IconEye } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react'
 
-export default function signup() {
+export default function Signup() {
   return (
     <div className='w-full h-full flex items-center justify-center'>
       <div className="xs:w-[98%] md:w-[60%] lg:w-[30%] p-10 flex flex-col gap-5 rounded-lg bg-white shadow-2xl border border-gray-100 shadow-slate-200">

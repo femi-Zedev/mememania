@@ -3,7 +3,7 @@ import { TabsListStylesNames } from "@mantine/core/lib/Tabs/TabsList/TabsList";
 import { Variants } from "framer-motion";
 
 // @ts-ignore
-function getComponentBgColor( variant:  Variants<"outline" | "white" | "default" | "filled" | "light" | "subtle" | "gradient"> | undefined ) {
+function GetComponentBgColor( variant:  Variants<"outline" | "white" | "default" | "filled" | "light" | "subtle" | "gradient"> | undefined ) {
   const theme = useMantineTheme()
   switch (variant) {
     case "filled":
@@ -16,7 +16,7 @@ function getComponentBgColor( variant:  Variants<"outline" | "white" | "default"
 }
 
 // @ts-ignore
-function getComponentColor( variant:  Variants<"outline" | "white" | "default" | "filled" | "light" | "subtle" | "gradient"> | undefined ) {
+function GetComponentColor( variant:  Variants<"outline" | "white" | "default" | "filled" | "light" | "subtle" | "gradient"> | undefined ) {
   const theme = useMantineTheme()
   switch (variant) {
     case "subtle":
@@ -42,7 +42,7 @@ export const theme: MantineThemeOverride = {
           fontWeight: "bolder",
           fontFamily: 'Karla',
           fontSize: '16px',
-          color:  getComponentColor({ variant: params.variant }),
+          color:  GetComponentColor({ variant: params.variant }),
           '&:hover': {
             backgroundColor: theme.colors.brand[7],
             color: params.variant === "outline" ? theme.colors.brand[4] : "#ffffff"

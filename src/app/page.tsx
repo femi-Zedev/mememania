@@ -18,7 +18,7 @@ export default function Home() {
             for all king of purposes. You can find the perfect meme for
             your video and even contribute to enrich this library.
           </p>
-          <Button className="mt-4 !rounded-xl" size="lg" variant='filled'>Get Started - It's Free</Button>
+          <Button className="mt-4 !rounded-xl" size="lg" variant='filled'>Get Started - It`&apos;s Free</Button>
         </div>
         {/* <img className="h-[320px] object-cover" alt="" src="/videoMain.png" /> */}
         <video src="/women_catMeme.mp4" autoPlay loop muted className="w-full rounded-2xl h-[380px] max-w-[500px] object-cover" />

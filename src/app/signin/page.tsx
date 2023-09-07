@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { useRecoilState } from 'recoil';
 
-export default function signin() {
+export default function Signin() {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom);
 

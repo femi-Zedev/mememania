@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useRecoilState } from 'recoil';
 
-export default function profile() {
+export default function Profile() {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom);
   console.log(currentUser);
@@ -47,7 +47,7 @@ export default function profile() {
 
           <Tabs.Panel className='flex flex-col gap-3 items-center text-center' value="memes" pt="xs">
             <h3 className='font-semibold text-2xl mt-20'>Publish your first meme</h3>
-            <p className='text-base'>Share your best memes with the world, let everyone know what's up !</p>
+            <p className='text-base'>Share your best memes with the world, let everyone know what`&apos;s up !</p>
             <Button size='md' radius="md" variant='filled' >Upload meme</Button>
           </Tabs.Panel>
 
