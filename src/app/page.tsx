@@ -7,10 +7,10 @@ export default function Home() {
   return (
    
 
-      <div className="flex xs:flex-col xl:px-[6%] lg:flex-row items-center mb-4 justify-between gap-8 h-full w-full ">
+      <div className="flex xs:flex-col xl:px-3 3xl:px-[6%] lg:flex-row items-center mb-4 justify-between gap-8 h-full w-full ">
         <div className="xl:w-[40%] home-page">
           <h1 className="text-heading xs:font-extrabold lg:font-bold">
-            Find the <span className="text-highlight ">perfect meme</span> for every <span className="text-highlight ">situation</span> !
+            Find the <span className="text-highlight ">perfect meme</span> for every <span className="text-highlight ">usage</span> !
           </h1>
 
           <p className="text-regular20 mt-5 text-gray-400">

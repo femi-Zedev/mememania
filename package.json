@@ -23,10 +23,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-files": "^3.0.0",
-    "recoil": "^0.7.7",
     "sass": "^1.66.1",
     "tailwindcss": "^3.3.3",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@types/node": "20.4.5",

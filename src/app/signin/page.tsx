@@ -1,17 +1,17 @@
 "use client"; // This is a client component 👈🏽
 import CustomIcon from '@/components/ui-components/CustomIcon'
-import { currentUserAtom } from '@/recoil/atoms';
+import userStore from '@/zustand/userStore';
 import { Button, Divider, PasswordInput, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form';
 import { IconEye, IconEyeClosed } from '@tabler/icons-react';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
-import { useRecoilState } from 'recoil';
 
 export default function Signin() {
   const router = useRouter();
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom);
+  const { user, setUser } = userStore()
+
 
   const [isLoading, setIsLoading] = useState(false)
   const form = useForm({
@@ -31,7 +31,7 @@ export default function Signin() {
     const user = {
       email: form.values.email,
     };
-    setCurrentUser(user)
+    setUser(user)
     setTimeout(() => {
       setIsLoading(false)
       router.push('/profile')

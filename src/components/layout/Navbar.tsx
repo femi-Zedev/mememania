@@ -5,15 +5,15 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { IconChevronDown, IconSettings, IconUpload, IconUserCircle } from '@tabler/icons-react';
-import { useRecoilState } from 'recoil';
-import { currentUserAtom } from '@/recoil/atoms';
+import { IconChevronDown, IconSettings, IconUpload } from '@tabler/icons-react';
+import userStore from '@/zustand/userStore';
 
 
 const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false)
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom);
+
+  const { user, setUser } = userStore()
   const [isAuth, setIsAuth] = useState(false)
 
   const router = useRouter();
@@ -31,7 +31,7 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
   const logOut = () => {
     setIsAuth(false)
     setMenuOpen(false)
-    setCurrentUser({})
+    setUser(undefined)
     router.push('/signin')
   };
 
@@ -52,8 +52,8 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
 
 
   useEffect(() => {
-    currentUser == null || undefined ? setIsAuth(false) : setIsAuth(true)
-  }, [currentUser])
+    user == undefined ? setIsAuth(false) : setIsAuth(true)
+  }, [user])
 
 
 
@@ -90,7 +90,7 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
                   <>
                     {isAuth ?
                       <span className='xs:hidden md:flex items-center gap-x-4'>
-                        <ProfileMenu onProfileClick={() => { router.push('/profile') }} onLogout={logOut} onSettingClick={() => { router.push('/settings') }} currentUser={currentUser} />
+                        <ProfileMenu onProfileClick={() => { router.push('/profile') }} onLogout={logOut} onSettingClick={() => { router.push('/settings') }} currentUser={user} />
                         <Button variant='filled' size='md' radius="md"  >Upload</Button>
                       </span>
 
@@ -139,10 +139,10 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
                 <motion.div className='flex flex-col gap-2 mt-4' initial={{ x: -70, y: 0 }} animate={{ x: 0, y: 0 }} exit={{ x: -70, y: 0, opacity: 0 }}>
                   <Divider />
                   <button className='flex items-center gap-4 justify-start  w-full rounded-md  py-2 px-4' onClick={handleProfileClick}>
-                      <Avatar size='40px' radius="xl" styles={{ placeholder: { backgroundColor: '#EA7C3D', color: '#fff', textTransform: 'capitalize' } }}>{currentUser.email?.[0]}</Avatar>
+                      <Avatar size='40px' radius="xl" styles={{ placeholder: { backgroundColor: '#EA7C3D', color: '#fff', textTransform: 'capitalize' } }}>{user.email?.[0]}</Avatar>
                       <div className="text-start">
-                        <p className='capitalize text-md font-semibold'>{currentUser.email?.split('@')[0]} </p>
-                        <span className='text-xs font-normal text-gray-400'>{currentUser.email}</span>
+                        <p className='capitalize text-md font-semibold'>{user.email?.split('@')[0]} </p>
+                        <span className='text-xs font-normal text-gray-400'>{user.email}</span>
                         <p className='text-primary-600 mt-1 text-xs font-normal'>View Profile</p>
                       </div>
                   </button>
@@ -186,10 +186,10 @@ const ProfileMenu = ({ currentUser, onProfileClick, onLogout, onSettingClick }: 
     <Menu radius="12px" width={230} shadow="md">
 
       <Menu.Target>
-        <button className='flex items-center h-full'>
+        <div className='flex items-center h-full'>
           <Avatar radius="xl" styles={{ placeholder: { backgroundColor: '#EA7C3D', color: '#fff', textTransform: 'capitalize' } }}>{currentUser.email?.[0]}</Avatar>
           <ActionIcon> <IconChevronDown size="16px" /> </ActionIcon>
-        </button>
+        </div>
       </Menu.Target>
 
       <Menu.Dropdown>
