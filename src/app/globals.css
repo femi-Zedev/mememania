@@ -69,9 +69,13 @@ body::-webkit-scrollbar {
   height: 8px;
 }
 
-input[type=search] { 	
+.custom-searchInput > .mantine-Input-wrapper > input[type=search] { 	
   padding-left: 42px !important;
   padding-top: 
+}
+
+.external-link {
+  @apply text-teal-500 hover:underline;
 }
 
 /* media queries */

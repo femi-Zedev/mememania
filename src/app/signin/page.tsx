@@ -10,7 +10,13 @@ import React, { useState } from 'react'
 
 export default function Signin() {
   const router = useRouter();
-  const { user, setUser } = userStore()
+  const { setUser } = userStore()
+
+  const inputStyle = {
+    input: {
+      height: "43px"
+    }
+  }
 
 
   const [isLoading, setIsLoading] = useState(false)
@@ -22,11 +28,12 @@ export default function Signin() {
 
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      password: (value) => (!value ? 'Your must fill your password' : null),
     },
   });
 
   function handleLogin() {
-    if(form.isTouched() && !form.isValid() ) return
+    if (form.isTouched() && !form.isValid()) return
     setIsLoading(true)
     const user = {
       email: form.values.email,
@@ -40,7 +47,7 @@ export default function Signin() {
 
   return (
     <div className='w-full h-full flex items-center justify-center'>
-      <div className="xs:w-[98%] md:w-[60%] lg:w-[30%] p-10 flex flex-col gap-5 rounded-lg bg-white shadow-2xl border border-gray-100 shadow-slate-200">
+      <div className="w-[98%] md:w-[60%] lg:w-[40%] p-10 flex flex-col gap-5 rounded-lg bg-white shadow-2xl border border-gray-100 shadow-slate-200">
         <div className="">
           <h2 className='font-bold text-[32px] text-gray-800'>Log in</h2>
           <div className='ml-1 md:flex gap-2 text-regular14 font-semibold text-gray-600'>
@@ -49,12 +56,14 @@ export default function Signin() {
           </div>
         </div>
 
-        <Button variant='outline' size='lg' radius="6px" className='!border-gray-300 !text-gray-400 !font-normal hover:!text-white' leftIcon={<CustomIcon icon='google' />} > Login with Google</Button>
+        <Button variant='outline' size='lg' radius="6px" className='!border-gray-300 hover:!bg-gray-300 !text-gray-400 !font-normal hover:!text-gray-500' leftIcon={<CustomIcon icon='google' />} > Login with Google</Button>
         <Divider label={<p className='text-sm'>or</p>} labelPosition='center' />
 
-        <TextInput radius='6px' type='email' className='w-full' placeholder='Email'  {...form.getInputProps('email')} />
-        <div>
+
+        <form className='flex flex-col gap-y-4' onSubmit={form.onSubmit((values) => console.log(values))}>
+          <TextInput styles={inputStyle} radius='6px' type='email' className='w-full' placeholder='Email'  {...form.getInputProps('email')} />
           <PasswordInput
+          styles={inputStyle}
             radius='6px'
             placeholder="Password"
             {...form.getInputProps('password')}
@@ -62,10 +71,10 @@ export default function Signin() {
               reveal ? <IconEyeClosed size={20} /> : <IconEye size={20} />
             } />
           <p onClick={() => { router.push('/signup') }} className='text-right text-primary-500 text-sm mt-2 cursor-pointer font-semibold'>Forgot your password ?</p>
-        </div>
+          <Button loading={isLoading} type='submit' className="mt-4 !rounded-md" size="lg" variant='filled' onClick={handleLogin}>Login</Button>
+        </form>
 
 
-        <Button loading={isLoading} className="mt-4 !rounded-md" size="lg" variant='filled' onClick={handleLogin}>Login</Button>
 
       </div>
     </div>

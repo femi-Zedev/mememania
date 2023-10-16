@@ -25,7 +25,7 @@ export default function Profile() {
               leftIcon={<IconPencil className='stroke-slate-800' size={20} />}
               size='md' radius="md"
               className='!bg-gray-200 !text-gray-700 hover:!bg-gray-300'
-              onClick={() => { router.push('/setting') }} >
+              onClick={() => { router.push('/settings') }} >
               Edit profile
             </Button>
 

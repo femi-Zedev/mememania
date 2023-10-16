@@ -68,10 +68,10 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
           </Link>
 
 
-          <div className='flex xl:w-1/3 items-center justify-end'>
+          <div className='flex xl:w-1/3 justify-end'>
             {isNavBarStyled &&
               <>
-                <div className="flex gap-6">
+                <div className="flex gap-6 items-center">
                   {searchFocused === false &&
                     <button className='xl:hidden' onClick={() => { setMenuOpen(true); setSearchFocused(true) }}>
                       <CustomIcon icon="search" height={20} width={20} fill="#000000" />
@@ -85,13 +85,13 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
                     icon={<CustomIcon icon="search" height={20} width={20} fill="#000000" />}
                     variant="filled"
                     placeholder="Search meme"
-                    className='w-full xs:hidden xl:block'
+                    className='w-full custom-searchInput xs:hidden xl:block'
                   />
                   <>
                     {isAuth ?
                       <span className='xs:hidden md:flex items-center gap-x-4'>
                         <ProfileMenu onProfileClick={() => { router.push('/profile') }} onLogout={logOut} onSettingClick={() => { router.push('/settings') }} currentUser={user} />
-                        <Button variant='filled' size='md' radius="md"  >Upload</Button>
+                        <Button variant='filled' size='md' radius="md" onClick={() => {router.push('/upload')} }>Upload</Button>
                       </span>
 
                       :
@@ -106,7 +106,7 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
                 </div>
 
                 <a onClick={handleBurgerClick}>
-                  <Burger size={20} opened={menuOpen} className='xl:hidden ml-4' />
+                  <Burger size={20} opened={menuOpen} className='xl:hidden ml-4 my-auto' />
                 </a>
               </>
             }
@@ -130,7 +130,7 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
                     variant="filled"
                     autoFocus
                     placeholder="Search meme"
-                    className='w-full my-6'
+                    className='custom-searchInput w-full my-6'
                   />
                 </motion.div>
               }
@@ -141,8 +141,8 @@ const Navbar = ({ isNavBarStyled }: { isNavBarStyled: boolean, }) => {
                   <button className='flex items-center gap-4 justify-start  w-full rounded-md  py-2 px-4' onClick={handleProfileClick}>
                       <Avatar size='40px' radius="xl" styles={{ placeholder: { backgroundColor: '#EA7C3D', color: '#fff', textTransform: 'capitalize' } }}>{user.email?.[0]}</Avatar>
                       <div className="text-start">
-                        <p className='capitalize text-md font-semibold'>{user.email?.split('@')[0]} </p>
-                        <span className='text-xs font-normal text-gray-400'>{user.email}</span>
+                        <p className='capitalize text-md font-semibold '>{user.email?.split('@')[0]} </p>
+                        <span className='text-xs font-normal text-gray-400 truncate'>{user.email}</span>
                         <p className='text-primary-600 mt-1 text-xs font-normal'>View Profile</p>
                       </div>
                   </button>
@@ -198,7 +198,7 @@ const ProfileMenu = ({ currentUser, onProfileClick, onLogout, onSettingClick }: 
             <Avatar size='34px' radius="xl" styles={{ placeholder: { backgroundColor: '#EA7C3D', color: '#fff', textTransform: 'capitalize' } }}>{currentUser.email?.[0]}</Avatar>
             <div className="text-sm font-semibold">
               <p className='mt-[6px] capitalize'>{currentUser.email?.split('@')[0]} </p>
-              <span className='text-xs font-normal text-gray-400'>{currentUser.email}</span>
+              <span className='text-xs font-normal text-gray-400 truncate'>{currentUser.email}</span>
               <p className='text-primary-600'>View Profile</p>
             </div>
           </div>
