@@ -101,7 +101,7 @@ export default function Settings() {
 
                 <div className="flex flex-col gap-7">
                   {social_links.map(({ controlName, label, icon }) => (
-                    <div className="flex justify-between">
+                    <div key={controlName} className="flex justify-between">
                       <div className="flex items-center gap-x-4">
                         <img className='w-10' src={`/social_icon/${icon}.svg`} alt="" />
                         <p>{label}</p>

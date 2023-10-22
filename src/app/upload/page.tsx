@@ -60,7 +60,7 @@ export default function Upload() {
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {rules.map((rule) => (
-            <span className="flex items-center lg:pl-10 gap-2 m-2">
+            <span key={rule} className="flex items-center lg:pl-10 gap-2 m-2">
               <BsFillCheckCircleFill size={20} className='fill-teal-500' />
               <p>{rule}</p>
             </span>
