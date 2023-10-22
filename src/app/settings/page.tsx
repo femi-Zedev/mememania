@@ -15,7 +15,7 @@ export default function Settings() {
   }
 
   const social_links = [
-    { controlName: 'twitterLink', icon: 'instagram', label: 'Instagram' },
+    { controlName: 'instagramLink', icon: 'instagram', label: 'Instagram' },
     { controlName: 'twitterLink', icon: 'x_twitter', label: 'X (twitter)' },
     { controlName: 'tiktokLink', icon: 'tiktok', label: 'Tiktok' },
     { controlName: 'threadsLink', icon: 'threads', label: 'Threads' },
@@ -48,6 +48,7 @@ export default function Settings() {
     },
   });
 
+
   return (
     <>
       {user &&
@@ -72,7 +73,7 @@ export default function Settings() {
                   <TextInput styles={inputStyle} label="Last name" radius='6px' className='w-full' placeholder='Last name'  {...form.getInputProps('lastName')} />
                 </span>
                 <span className="md:flex gap-x-3">
-                  <Select aria-expanded={true} styles={inputStyle} label="Country" radius='6px' className='w-full' data={['Nigeria', 'Benin', 'France', 'United States of America']}  {...form.getInputProps('country')} />
+                  <Select searchable styles={inputStyle} label="Country" radius='6px' className='w-full' data={['Nigeria', 'Benin', 'France', 'United States of America']}  {...form.getInputProps('country')} />
                   <TextInput styles={inputStyle} label="City" radius='6px' className='w-full' placeholder='Last name'  {...form.getInputProps('lastName')} />
                 </span>
                 <span>
@@ -106,9 +107,9 @@ export default function Settings() {
                         <p>{label}</p>
                       </div>
                       <TextInput
-                        styles={inputStyle} radius='6px' 
+                        styles={inputStyle} radius='6px'
                         className='w-[60%]'
-                        leftSection={<IconAt style={{ width: rem(16), height: rem(16) }} />}
+                        icon={<IconAt style={{ width: rem(16), height: rem(16) }} />}
                         {...form.getInputProps(controlName)}
                       />
                     </div>

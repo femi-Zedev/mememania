@@ -79,10 +79,9 @@ export const theme: MantineThemeOverride = {
           color: "#525252",
           marginBottom: "4px"
         },
-        option: {
-          marginTop: "4px",
-          marginBottom: "4px",
-          padding: "4px"
+        item: {
+          marginTop: "2px",
+          marginBottom: "2px",
         }
       })
     },
